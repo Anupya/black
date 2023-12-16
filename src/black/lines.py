@@ -450,16 +450,14 @@ class Line:
             n.type in TEST_DESCENDANTS for n in subscript_start.pre_order()
         )
 
-    def enumerate_with_length(
-        self, reversed: bool = False
-    ) -> Iterator[Tuple[Index, Leaf, int]]:
+    def enumerate_with_length(self, is_reversed: bool = False) -> Iterator[Tuple[Index, Leaf, int]]:
         """Return an enumeration of leaves with their length.
 
         Stops prematurely on multiline strings and standalone comments.
         """
         op = cast(
             Callable[[Sequence[Leaf]], Iterator[Tuple[Index, Leaf]]],
-            enumerate_reversed if reversed else enumerate,
+            enumerate_reversed if is_reversed else enumerate,
         )
         for index, leaf in op(self.leaves):
             length = len(leaf.prefix) + len(leaf.value)

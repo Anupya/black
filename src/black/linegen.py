@@ -1413,7 +1413,7 @@ def remove_await_parens(node: Node) -> None:
             # Since await is an expression we shouldn't remove
             # brackets in cases where this would change
             # the AST due to operator precedence.
-            # Therefore we only aim to remove brackets around
+            # Therefore, we only aim to remove brackets around
             # power nodes that aren't also await expressions themselves.
             # https://peps.python.org/pep-0492/#updated-operator-precedence-table
             # N.B. We've still removed any redundant nested brackets though :)
@@ -1635,7 +1635,7 @@ def generate_trailers_to_omit(line: Line, line_length: int) -> Iterator[Set[Leaf
     opening_bracket: Optional[Leaf] = None
     closing_bracket: Optional[Leaf] = None
     inner_brackets: Set[LeafID] = set()
-    for index, leaf, leaf_length in line.enumerate_with_length(reversed=True):
+    for index, leaf, leaf_length in line.enumerate_with_length(is_reversed=True):
         length += leaf_length
         if length > line_length:
             break
